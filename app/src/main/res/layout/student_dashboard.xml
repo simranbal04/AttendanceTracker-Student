@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:background="#29a19c">
+
+
+    <Button
+        android:id="@+id/ViewProfilebutton"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:text="View Profile"
+        android:background="#AD1457"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:layout_marginTop="20dp"/>
+
+    <Button
+        android:id="@+id/TakeAttendancebutton"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:text="Take Attendance"
+        android:textSize="25dp"
+        android:textColor="#ffffff"
+        android:background="#AD1457"
+        android:layout_marginTop="50dp"
+
+        />
+</LinearLayout>

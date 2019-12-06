@@ -24,9 +24,8 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(2000);
-                    Intent intent = new Intent(getApplicationContext(),StudentLogin.class);
+                    Intent intent = new Intent(getApplicationContext(),StudentDashboard.class);
                     startActivity(intent);
-//                    startActivity(new Intent(getApplicationContext(), StudentLogin.class));
                     finish();
                 }
                 catch (InterruptedException e)
