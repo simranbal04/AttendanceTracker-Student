@@ -1,4 +1,6 @@
 package com.example.studentinterfaceapp;
 
-public class StudentLogin {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class StudentLogin extends AppCompatActivity {
 }

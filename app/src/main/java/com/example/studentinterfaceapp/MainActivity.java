@@ -5,24 +5,37 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        button = (Button) findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        new Thread(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),StudentLogin.class);
-                startActivity(intent);
-
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    Intent intent = new Intent(getApplicationContext(),StudentLogin.class);
+                    startActivity(intent);
+//                    startActivity(new Intent(getApplicationContext(), StudentLogin.class));
+                    finish();
+                }
+                catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
             }
-        });
+        }).start();
+
+
     }
 }
