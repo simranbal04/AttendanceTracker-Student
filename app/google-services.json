@@ -1,0 +1,151 @@
+{
+  "project_info": {
+    "project_number": "1022664026658",
+    "firebase_url": "https://attendance-taker-54b35.firebaseio.com",
+    "project_id": "attendance-taker-54b35",
+    "storage_bucket": "attendance-taker-54b35.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022664026658:android:105f29f239fc02878b787b",
+        "android_client_info": {
+          "package_name": "com.example.attendancetaker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022664026658-ppf7bjme02rjc9k556urb7qb8j483nrv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.attendancetaker",
+            "certificate_hash": "e646972177dc8b419482dca294ea1e283989bacb"
+          }
+        },
+        {
+          "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6HvNKInSZzhVtidHrO1LXtfT3TFZuEOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022664026658:android:eef1f03b1392f15d8b787b",
+        "android_client_info": {
+          "package_name": "com.example.studentinterfaceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022664026658-fgl0oa3ri0srlo62b4qcbg3uolgfhhrj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studentinterfaceapp",
+            "certificate_hash": "636b077a4e056c070d7156f037df8c5cdf8fd014"
+          }
+        },
+        {
+          "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6HvNKInSZzhVtidHrO1LXtfT3TFZuEOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022664026658:android:58e10116e9f9273d8b787b",
+        "android_client_info": {
+          "package_name": "com.software.studentinterfaceattendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022664026658-scs6r74bdg1jdp75fp7dgbp1c3avpqhi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.software.studentinterfaceattendance",
+            "certificate_hash": "636b077a4e056c070d7156f037df8c5cdf8fd014"
+          }
+        },
+        {
+          "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6HvNKInSZzhVtidHrO1LXtfT3TFZuEOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022664026658:android:cb54d7878180c4118b787b",
+        "android_client_info": {
+          "package_name": "com.software.teacherinterfaceattendance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6HvNKInSZzhVtidHrO1LXtfT3TFZuEOA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1022664026658-pe88ngk6f2lrnjoc1s8fhr2cl62thefi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
