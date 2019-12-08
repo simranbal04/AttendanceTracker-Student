@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:background="#AD1457"
+        android:onClick="okbtn"
         android:padding="20dp"
         android:text="OK"
         android:onClick="okbtn"

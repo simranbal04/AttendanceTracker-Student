@@ -2,9 +2,7 @@ package com.example.studentinterfaceapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.content.pm.PackageManager;
 import android.view.View;
-import android.os.Build;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,14 +13,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class StudentLogin extends AppCompatActivity {
     //Database Refrences to firebase
     FirebaseDatabase database;
-    DatabaseReference studentReference;
+    DatabaseReference studentRefrences;
 
     EditText username_et, password_et;
 
@@ -32,11 +29,11 @@ public class StudentLogin extends AppCompatActivity {
         setContentView(R.layout.studentlogin);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        studentReference = database.getReference("students");
+        studentRefrences = database.getReference("students");
         //refer to edittext from xml file
-        username_et = findViewById(R.id.username_et);
-        password_et = findViewById(R.id.password_et);
-
+        username_et = (EditText) findViewById(R.id.username_et);
+        password_et = (EditText) findViewById(R.id.password_et);
+ 
     }
 
 
@@ -45,13 +42,12 @@ public class StudentLogin extends AppCompatActivity {
         final String username = username_et.getText().toString().trim();
         final String password = password_et.getText().toString().trim();
         //if either username or password is empty a toast msg will show up
-        if(username.isEmpty()||password.isEmpty())
-        {
+        if(username.isEmpty()||password.isEmpty()){
             Toast.makeText(getApplicationContext(),"Please Fill all Fields",Toast.LENGTH_LONG).show();
         }
         else {
 // make connection with database to fetch the value of username & password
-            studentReference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            studentRefrences.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //if username is correct,data will exist

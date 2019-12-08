@@ -13,20 +13,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-//import com.example.studentinterfaceapp.Modals.Students;
+import com.example.studentinterfaceapp.Students;
 
 public class ViewProfile extends AppCompatActivity {
 
-    TextView student_name;
-    TextView student_program;
-    TextView student_class;
-    TextView student_id;
+    private TextView student_name;
+    private TextView student_program;
+    private TextView student_class;
+    private TextView student_id;
 //    Button ok_button;
 
     // database details
     private  String username;
 
     private DatabaseReference studentReference;
+
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
@@ -41,12 +42,15 @@ public class ViewProfile extends AppCompatActivity {
 
 
         username= getIntent().getStringExtra("username");
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         studentReference = database.getReference("students");
+
 
         studentReference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
              @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 if (dataSnapshot.exists())
                 {
                     Students student_data = dataSnapshot.getValue(Students.class);
