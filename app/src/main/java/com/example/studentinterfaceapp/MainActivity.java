@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(2000);
-                    Intent intent = new Intent(getApplicationContext(),StudentDashboard.class);
+                    Intent intent = new Intent(getApplicationContext(),ViewProfile.class);
                     startActivity(intent);
                     finish();
                 }
