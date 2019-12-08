@@ -36,5 +36,6 @@
     android:textColor="#ffffff"
     android:background="#AD1457"
     android:layout_gravity="center"
+    android:onClick = "studentLogin"
     android:layout_margin="12dp"/>
 </LinearLayout>

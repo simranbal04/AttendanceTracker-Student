@@ -52,5 +52,6 @@
         android:background="#AD1457"
         android:padding="20dp"
         android:text="OK"
+        android:onClick="okbtn"
         android:textColor="#ffffff" />
 </LinearLayout>
