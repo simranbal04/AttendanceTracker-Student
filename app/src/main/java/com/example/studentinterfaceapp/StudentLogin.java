@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -15,6 +14,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import com.example.studentinterfaceapp.Students;
 
 public class StudentLogin extends AppCompatActivity {
     //Database Refrences to firebase
@@ -30,6 +30,7 @@ public class StudentLogin extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         studentRefrences = database.getReference("students");
+
         //refer to edittext from xml file
         username_et = (EditText) findViewById(R.id.username_et);
         password_et = (EditText) findViewById(R.id.password_et);
@@ -37,19 +38,24 @@ public class StudentLogin extends AppCompatActivity {
     }
 
 
-    public void studentLogin(View view) {
+    public void studentLogin(View view)
+    {
 //when user will click on LOGIN button, get value of username & password and store it in a varible
         final String username = username_et.getText().toString().trim();
         final String password = password_et.getText().toString().trim();
+
         //if either username or password is empty a toast msg will show up
-        if(username.isEmpty()||password.isEmpty()){
+        if(username.isEmpty()||password.isEmpty())
+        {
             Toast.makeText(getApplicationContext(),"Please Fill all Fields",Toast.LENGTH_LONG).show();
         }
-        else {
+        else
+            {
 // make connection with database to fetch the value of username & password
             studentRefrences.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                {
                     //if username is correct,data will exist
                     if (dataSnapshot.exists())
                     {
