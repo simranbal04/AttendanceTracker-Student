@@ -33,7 +33,7 @@ public class StudentLogin extends AppCompatActivity {
         //refer to edittext from xml file
         username_et = (EditText) findViewById(R.id.username_et);
         password_et = (EditText) findViewById(R.id.password_et);
-
+ 
     }
 
 
