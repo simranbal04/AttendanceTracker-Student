@@ -1,6 +1,7 @@
 package com.example.studentinterfaceapp;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -43,25 +44,34 @@ public class ViewProfile extends AppCompatActivity {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         studentReference = database.getReference("students");
 
-//        studentReference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
-//             @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                if (dataSnapshot.exists())
+        studentReference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+             @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists())
                 {
-//                    Students student_data = dataSnapshot.getValue(Students.class);
-//                    student_name.setText(student_data.getName());
+                    Students student_data = dataSnapshot.getValue(Students.class);
+                    student_name.setText(student_data.getName());
+                    student_program.setText("Program:" +student_data.getProgram());
+                    student_id.setText("Student ID:" +student_data.getStudentid());
+                    student_class.setText("Class:" +student_data.getClassname());
 
 
 
                 }
             }
 
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-//        });
+        });
 
 
-//    }
-//}
+
+    }
+
+    public  void okbtn(View view)
+    {
+        finish();
+    }
+}
