@@ -10,11 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 
 public class StudentRegister extends AppCompatActivity {
     EditText etclass, etemail, etinstruc, etname, etpassword, etprog, etstuid, etusername;
@@ -22,6 +29,8 @@ public class StudentRegister extends AppCompatActivity {
     Spinner prog;
     TextView loginBtn;
     String progtxt;
+
+    private FirebaseAuth firebaseAuth;
     private DatabaseReference stuReference;
     private FirebaseDatabase firebaseDatabase;
 
@@ -104,13 +113,51 @@ public class StudentRegister extends AppCompatActivity {
                     return;
                 }
             }
+
         });
+                firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(StudentRegister.this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+
+                        Student infomation = new Student(
+                                fullName,email,stuid,progtxt,termtxt
+                        );
+
+                        FirebaseDatabase.getInstance().getReference("Student").
+                                child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .setValue(infomation).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+
+                                Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                            }
+                        });
+
+                    }
+                    else{
+                        Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+
+
+                }
+            });
+
+
+
+
+
+
+
+
 
 
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), StudentLogin.class));
+                startActivity(new Intent(getApplicationContext(), StudentRegister.class));
             }
         });
     }
