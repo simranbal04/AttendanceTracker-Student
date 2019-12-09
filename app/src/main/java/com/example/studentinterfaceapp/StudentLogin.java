@@ -31,7 +31,7 @@ public class StudentLogin extends AppCompatActivity {
         setContentView(R.layout.studentlogin);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        studentRefrences = database.getReference("NewStudents");
+        studentRefrences = database.getReference("students");
         //refer to edittext from xml file
         username_et = (EditText) findViewById(R.id.username_et);
         password_et = (EditText) findViewById(R.id.password_et);
