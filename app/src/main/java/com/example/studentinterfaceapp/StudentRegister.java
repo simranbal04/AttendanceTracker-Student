@@ -3,6 +3,7 @@ package com.example.studentinterfaceapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -19,16 +20,18 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 
 public class StudentRegister extends AppCompatActivity {
-    EditText etclass, etemail, etinstruc, etname, etpassword, etprog, etstuid, etusername;
+    EditText etclass, etemail, etinstruc, etname, etpassword, etprog,etstuid, etusername;
     Button regbutton;
     Spinner prog;
     TextView loginBtn;
     String progtxt;
+
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference stuReference;
@@ -46,38 +49,45 @@ public class StudentRegister extends AppCompatActivity {
         etinstruc = findViewById(R.id.etinstruc);
         etname = findViewById(R.id.etname);
         etpassword = findViewById(R.id.etpassword);
-        //etprog = findViewById(R.id.etprog);
+        etprog = findViewById(R.id.etprog);
         etstuid = findViewById(R.id.etstuid);
         etusername = findViewById(R.id.etusername);
         regbutton = findViewById(R.id.regbutton);
+        //prog = findViewById(R.id.etprog);
 
-        String[] items = new String[]{"MAD-5234", "MAD-5244", "MAD-5254", "MAD-5264", "MAD-5314"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-        prog.setAdapter(adapter);
 
-        prog.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                progtxt =prog.getSelectedItem().toString();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // TODO Auto-generated method stub
-
-            }
-        });
+//        String[] items = new String[]{"MAD-5234", "MAD-5244", "MAD-5254", "MAD-5264", "MAD-5314"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+//        prog.setAdapter(adapter);
+//
+//        prog.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                progtxt =prog.getSelectedItem().toString();
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // TODO Auto-generated method stub
+//
+//            }
+//        });
 
         regbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 final String classname = etclass.getText().toString();
-                final String email = etemail.getText().toString();
+                final String email = etemail.getText().toString().trim();
                 final String instructor = etinstruc.getText().toString();
                 final String name = etname.getText().toString();
-                final String password = etpassword.getText().toString();
+                final String password = etpassword.getText().toString().trim();
                 final String studentid = etstuid.getText().toString();
                 final String username = etusername.getText().toString();
+                final String program = etprog.getText().toString();
+
+
+                stuReference = FirebaseDatabase.getInstance().getReference("NewStudents");
+                firebaseAuth = FirebaseAuth.getInstance();
 
                 if (TextUtils.isEmpty(classname)) {
                     etclass.setError("Class Name is Required.");
@@ -112,58 +122,60 @@ public class StudentRegister extends AppCompatActivity {
                     etusername.setError("Username is Required.");
                     return;
                 }
-            }
 
-        });
-                firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(StudentRegister.this, new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if(task.isSuccessful()){
 
-                        Student infomation = new Student(
-                                fullName,email,stuid,progtxt,termtxt
-                        );
-
-                        FirebaseDatabase.getInstance().getReference("Student").
-                                child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                                .setValue(infomation).addOnCompleteListener(new OnCompleteListener<Void>() {
+                firebaseAuth.createUserWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(StudentRegister.this, new OnCompleteListener<AuthResult>() {
                             @Override
-                            public void onComplete(@NonNull Task<Void> task) {
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // Sign in success, update UI with the signed-in user's information
 
-                                Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                    Students info = new Students(
+                                            studentid,name,program,classname,instructor,username, password
+                                    );
+
+                                    FirebaseDatabase.getInstance().getReference("NewStudents")
+
+                                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+
+                                            .setValue(info).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            Toast.makeText(StudentRegister.this, "New Student Added", Toast.LENGTH_SHORT).show();
+                                            startActivity(new Intent(getApplicationContext(),StudentLogin.class));
+                                        }
+                                    });
+
+                                } else
+                                    {
+                                    // If sign in fails, display a message to the user.
+
+                                }
+
+                                // ...
                             }
                         });
 
-                    }
-                    else{
-                        Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                        progressBar.setVisibility(View.GONE);
-                    }
-
-
-                }
-            });
 
 
 
-
-
-
-
-
-
-
-        loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), StudentRegister.class));
             }
         });
+
+
+
+//        regbutton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(StudentRegister.this, "REgistration Successful", Toast.LENGTH_SHORT).show();
+//                startActivity(new Intent(getApplicationContext(), StudentLogin.class));
+//            }
+//        });
+
+
+
     }
-
-
-
 
 
 }

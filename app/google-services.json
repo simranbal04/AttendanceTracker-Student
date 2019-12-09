@@ -52,6 +52,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1022664026658-fnqsdjbg3c1kd38ggt7iejgv0t78962h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.studentinterfaceapp",
+            "certificate_hash": "2a4bcb5b5ffb9ed04ae06564b72c0b06186bf16d"
+          }
+        },
+        {
           "client_id": "1022664026658-btll484089824a1a9si9q5os5fuesggh.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

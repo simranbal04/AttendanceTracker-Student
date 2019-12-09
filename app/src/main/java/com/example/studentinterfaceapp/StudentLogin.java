@@ -31,14 +31,11 @@ public class StudentLogin extends AppCompatActivity {
         setContentView(R.layout.studentlogin);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        studentRefrences = database.getReference("students");
+        studentRefrences = database.getReference("NewStudents");
         //refer to edittext from xml file
         username_et = (EditText) findViewById(R.id.username_et);
         password_et = (EditText) findViewById(R.id.password_et);
-
-
-
- 
+        regbutton = (Button)findViewById(R.id.regbutton);
     }
 
 
@@ -66,7 +63,7 @@ public class StudentLogin extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
                         }
                     } else {
-                        Toast.makeText(getApplicationContext(), "Wrong username", Toast.LENGTH_LONG).show();
+                       Toast.makeText(getApplicationContext(), "Wrong username", Toast.LENGTH_LONG).show();
                     }
                 }
 
