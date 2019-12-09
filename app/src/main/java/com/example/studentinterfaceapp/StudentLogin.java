@@ -3,6 +3,7 @@ package com.example.studentinterfaceapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,6 +23,7 @@ public class StudentLogin extends AppCompatActivity {
     DatabaseReference studentRefrences;
 
     EditText username_et, password_et;
+    Button regbutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,9 @@ public class StudentLogin extends AppCompatActivity {
         //refer to edittext from xml file
         username_et = (EditText) findViewById(R.id.username_et);
         password_et = (EditText) findViewById(R.id.password_et);
+
+
+
  
     }
 
@@ -42,34 +47,29 @@ public class StudentLogin extends AppCompatActivity {
         final String username = username_et.getText().toString().trim();
         final String password = password_et.getText().toString().trim();
         //if either username or password is empty a toast msg will show up
-        if(username.isEmpty()||password.isEmpty()){
-            Toast.makeText(getApplicationContext(),"Please Fill all Fields",Toast.LENGTH_LONG).show();
-        }
-        else {
+        if (username.isEmpty() || password.isEmpty()) {
+            Toast.makeText(getApplicationContext(), "Please Fill all Fields", Toast.LENGTH_LONG).show();
+        } else {
 // make connection with database to fetch the value of username & password
             studentRefrences.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     //if username is correct,data will exist
-                    if (dataSnapshot.exists())
-                    {
+                    if (dataSnapshot.exists()) {
                         Students student_data = dataSnapshot.getValue(Students.class);
-                        if (student_data.getPassword().equalsIgnoreCase(password))
-                        {
+                        if (student_data.getPassword().equalsIgnoreCase(password)) {
                             Intent in = new Intent(getApplicationContext(), StudentDashboard.class);
                             in.putExtra("username", username);
                             startActivity(in);
                             finish();
-                        }
-                        else{
+                        } else {
                             Toast.makeText(getApplicationContext(), "Wrong Password", Toast.LENGTH_LONG).show();
-                            }
-                    }
-                    else
-                        {
-                          Toast.makeText(getApplicationContext(),"Wrong username",Toast.LENGTH_LONG).show();
                         }
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong username", Toast.LENGTH_LONG).show();
+                    }
                 }
+
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -77,5 +77,20 @@ public class StudentLogin extends AppCompatActivity {
             });
         }
     }
+
+        public void studentRegister(View view)
+        {
+
+
+            regbutton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    startActivity(new Intent(getApplicationContext(), StudentRegister.class));
+                }
+            });
+
+
+        }
+
 }
 

@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:hint="Enter Password:"
         android:layout_margin="12dp"/>
-    <EditText
+    <Spinner
         android:id="@+id/etprog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
