@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="12dp">
 
@@ -29,7 +31,7 @@
     android:hint="Enter Password"
     android:layout_margin="12dp"/>
 <Button
-    android:id="@+id/button"
+    android:id="@+id/stuloginbutton"
     android:layout_width="200dp"
     android:layout_height="wrap_content"
     android:text="LOGIN"
@@ -38,4 +40,15 @@
     android:layout_gravity="center"
     android:onClick = "studentLogin"
     android:layout_margin="12dp"/>
+
+    <Button
+        android:id="@+id/regbutton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#ffffff"
+        android:onClick="studentRegister"
+        android:text="New Here ?  Create Account"
+
+        android:textColor="#AD1457" />
 </LinearLayout>
