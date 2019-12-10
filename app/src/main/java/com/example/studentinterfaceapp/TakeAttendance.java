@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+//import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,6 +24,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class TakeAttendance extends AppCompatActivity implements QRCodeReaderView.OnQRCodeReadListener {
+
 
     private QRCodeReaderView qrCodeReaderView;
     private TextView date_tv, message_tv;
@@ -54,7 +56,7 @@ public class TakeAttendance extends AppCompatActivity implements QRCodeReaderVie
 
         database = FirebaseDatabase.getInstance();
         attendanceReference = database.getReference("dailyattendance");
-        textReference = database.getReference("attendancetext");
+        textReference = database.getReference("attendancedata");
         checkAttendanceForToday();
 
 
@@ -73,20 +75,28 @@ public class TakeAttendance extends AppCompatActivity implements QRCodeReaderVie
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                Log.d("TAG", "onDataChange: "+dataSnapshot);
                 if (dataSnapshot.exists()) {
                     // if attendance is already marked
 
+                    Log.d("TAG", "onDataChange: ");
                     if (dataSnapshot.hasChild(username)) {
                         //if already marked
                         sec2.setVisibility(View.VISIBLE);
                         sec1.setVisibility(View.GONE);
+                        Log.d("TAG", "onDataChange: hasChild");
+
                     } else {
                         //if not already marked
                         getTextToMatch();
+                        Log.d("TAG", "onDataChange: else");
+
                     }
                 } else {
                     //if not already marked
                     getTextToMatch();
+                    Log.d("TAG", "onDataChange: 2nd Else");
+
                 }
 
             }
@@ -129,8 +139,10 @@ public class TakeAttendance extends AppCompatActivity implements QRCodeReaderVie
         textReference.child(todayDate).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Log.d("TAG", "onDataChange: outside if");
                 //if text exist in databse
                 if (dataSnapshot.exists()) {
+                    Log.d("TAG", "onDataChange: "+dataSnapshot.getValue());
                     text_to_match = (String) dataSnapshot.getValue();
                     enableQRScanner();
 
@@ -155,18 +167,21 @@ public class TakeAttendance extends AppCompatActivity implements QRCodeReaderVie
     @Override
     public void onQRCodeRead(final String text, PointF[] points) {
 
-        Log.d("MYMSG", todayDate + " -- " + text);
+        Log.d("TAG", todayDate + " -- " + text);
         Toast.makeText(getApplicationContext(), todayDate + " -- " + text, Toast.LENGTH_LONG).show();
         //when any text will be scanned through qr code , it will be matched with the code present in database
 
 
+        Log.d("TAG", "onQRCodeRead: "+text_to_match);
+        Log.d("TAG", "onQRCodeRead: "+text.trim());
         if (text_to_match.equals(text.trim())) {
-
+            Log.d("TAG", "onQRCodeRead: IF");
             attendanceReference.child(todayDate).child(username).setValue(true);
             Toast.makeText(getApplicationContext(), "Attendance Marked", Toast.LENGTH_LONG).show();
             TakeAttendance.this.finish();
 
         } else {
+            Log.d("TAG", "onQRCodeRead: ELSE");
             //if code is wrong , show toast
             Toast.makeText(getApplicationContext(), "Invalid QR CODE", Toast.LENGTH_LONG).show();
         }
