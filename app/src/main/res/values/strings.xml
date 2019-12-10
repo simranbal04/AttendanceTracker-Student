@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">StudentInterfaceApp</string>
+    <string-array name="Program">
+        <item>MADT-5234</item>
+        <item>MADT-5244</item>
+        <item>MADT-5254</item>
+        <item>MADT-5264</item>
+        <item>MADT-5314</item>
+    </string-array>
 </resources>

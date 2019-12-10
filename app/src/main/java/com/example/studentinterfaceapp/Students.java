@@ -2,8 +2,9 @@ package com.example.studentinterfaceapp;
 
 public class Students {
 
-    private  int studentid;
-    private  String name,program,classname,instructor,username, password;
+    private int studentid;
+    private String name,program,classname,instructor,username, password;
+
 
     public Students()
     {
