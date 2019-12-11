@@ -27,6 +27,20 @@
         android:onClick="takeAttendance"
         android:text="Take Attendance"
         android:textColor="#ffffff"
+        android:textSize="25dp" />
+
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginTop="290dp"
+        android:background="#AD1457"
+        android:onClick="logout"
+        android:text="Log Out"
+        android:textColor="#ffffff"
 
         android:textSize="25dp" />
+
+
 </LinearLayout>

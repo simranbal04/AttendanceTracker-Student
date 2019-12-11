@@ -9,9 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class StudentDashboard extends AppCompatActivity {
 
-//    Button ViewProfilebutton;
+    //    Button ViewProfilebutton;
 //    Button TakeAttendancebutton;
     String username;
+    Button logout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,17 +23,17 @@ public class StudentDashboard extends AppCompatActivity {
 //        TakeAttendancebutton = (Button) findViewById(R.id.TakeAttendancebutton);
 //        ViewProfilebutton = (Button) findViewById(R.id.ViewProfilebutton);
 
+        logout = (Button) findViewById(R.id.regbutton);
 
     }
-    public void takeAttendance(View view)
-    {
+
+    public void takeAttendance(View view) {
         startActivity(new Intent(getApplicationContext(), TakeAttendance.class).putExtra("username", username));
     }
 
 
-    public void viewprofile(View view)
-    {
-        startActivity(new Intent(getApplicationContext(),ViewProfile.class).putExtra("username",username));
+    public void viewprofile(View view) {
+        startActivity(new Intent(getApplicationContext(), ViewProfile.class).putExtra("username", username));
     }
 
 //        ViewProfilebutton.setOnClickListener(new View.OnClickListener() {
@@ -51,6 +53,9 @@ public class StudentDashboard extends AppCompatActivity {
 //        });
 
 
+    public void logout(View view) {
 
+        startActivity(new Intent(getApplicationContext(),StudentLogin.class));
 
+    }
 }
