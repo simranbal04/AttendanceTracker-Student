@@ -13,9 +13,9 @@
         android:layout_height="75dp"
         android:layout_marginTop="20dp"
         android:background="#AD1457"
+        android:textColor="#ffffff"
         android:onClick="viewprofile"
         android:text="View Profile"
-        android:textColor="#ffffff"
         android:textSize="25dp" />
 
     <Button

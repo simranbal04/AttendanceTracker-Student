@@ -42,6 +42,7 @@ public class StudentLogin extends AppCompatActivity {
         //refer edittext from xml file
         username_et=findViewById(R.id.username_et);
         password_et=findViewById(R.id.password_et);
+        regbutton =findViewById(R.id.regbutton);
 
         askpermission();
     }

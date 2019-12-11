@@ -132,7 +132,8 @@ public class StudentRegister extends AppCompatActivity {
                                     // Sign in success, update UI with the signed-in user's information
 
                                     Students info = new Students(
-                                            Integer.valueOf(studentid),name,program,classname,instructor,username, password
+
+                                             name,program,classname,instructor,username, password,studentid,email
                                     );
                                     FirebaseDatabase.getInstance().getReference("NewStudents")
 
